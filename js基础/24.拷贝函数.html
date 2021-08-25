@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let obj = {
+        a: 1,
+        b: {
+          c: {
+            d: 2
+          }
+        },
+        e: 3
+      }
+      // 深度优先
+      function deepClone(obj) {
+        let newObj = Object.create(null)
+        if (typeof obj === 'object' && obj !== null) {
+          for (key in obj) {
+            // console.log(key)
+            if (typeof obj[key] === 'object') {
+              newObj[key] = deepClone(obj[key])
+              continue
+            }
+            newObj[key] = obj[key]
+          }
+        }
+        return newObj
+      }
+
+      // 深度优先，不递归
+      function deepCopyDFS(obj) {
+        let stack = []
+        let newObj = {}
+        if (typeof obj === 'object' && obj !== null) {
+          stack.push([obj, newObj])
+        }
+        while (stack.length) {
+          let [obj, newObj] = stack.pop()
+          for (let key in obj) {
+            if (typeof obj[key] === 'object' && obj !== null) {
+              newObj[key] = {}
+              stack.push([obj[key], newObj[key]])
+            } else {
+              newObj[key] = obj[key]
+            }
+          }
+        }
+
+        return newObj
+      }
+
+      // 广度优先
+      function deepCopyBFS(obj) {
+        let queue = []
+        let newObj = {}
+        if (typeof obj === 'object' && obj !== null) {
+          queue.push([obj, newObj])
+        }
+        while (queue.length) {
+          let [obj, newObj] = queue.shift()
+          for (let key in obj) {
+            if (typeof obj[key] === 'object' && obj[key] !== null) {
+              newObj[key] = {}
+              queue.push([obj[key], newObj[key]])
+            } else {
+              newObj[key] = obj[key]
+            }
+          }
+        }
+        return newObj
+      }
+
+      // 深拷贝
+      // let newObj = deepClone(obj)
+      // let newObj = JSON.parse(JSON.stringify(obj))
+      // 浅拷贝
+      // let newObj = Object.assign({}, obj)
+      // let newObj = { ...obj }
+      // console.log(obj.b.c === newObj.b.c)
+      // let newObj = deepCopyBFS(obj)
+      let newObj = deepCopyDFS(obj)
+      console.log(newObj)
+    </script>
+  </body>
+</html>

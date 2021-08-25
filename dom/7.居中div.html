@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .a {
+        /* position: relative; */
+        /* display: table-cell; */
+        /* 水平居中 */
+        /* text-align: center; */
+        /* 垂直居中 */
+        /* vertical-align: middle; */
+        width: 200px;
+        height: 200px;
+        background-color: pink;
+      }
+      .b {
+        /* position: relative; */
+        /* 行内块 */
+        /* display: inline-block; */
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        line-height: 100px;
+        /* 可以没有宽高 */
+        /* top: 50%;
+        left: 50%; */
+        /* 必须给宽高 */
+        /* margin-top: -50px;
+        margin-left: -50px; */
+        /* transform: translate(-50%, -50%); */
+
+        /* 不用给宽高,但得有内容 */
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="a">
+      <div class="b">bb</div>
+    </div>
+  </body>
+</html>

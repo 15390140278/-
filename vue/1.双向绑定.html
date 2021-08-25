@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="content"></div>
+    <button onclick="increment()">+</button>
+    <script>
+      // 1数据劫持
+      function render() {
+        const content = document.querySelector('.content')
+        content.innerHTML = data.number
+      }
+      function increment() {
+        data.number++
+      }
+
+      const data = {
+        number: 0
+      }
+
+      const newData = Object.assign({}, data)
+
+      Object.defineProperty(data, 'number', {
+        set(newVal) {
+          // data.number = newVal
+          // 复制一个对象的目的，防止无限递归调用set
+          newData.number = newVal
+          render()
+        },
+        get(val) {
+          return newData.number
+        }
+      })
+      render()
+
+      // 代理proxy
+      // function render() {
+      //   const content = document.querySelector('.content')
+      //   content.innerHTML = data.number
+      // }
+
+      // function increment() {
+      //   data.number++
+      // }
+
+      // let data = {
+      //   number: 0
+      // }
+
+      // render()
+
+      // data = new Proxy(data, {
+      //   get(target, prop) {
+      //     return target[prop]
+      //   },
+      //   set(target, prop, value) {
+      //     target[prop] = value
+      //     render()
+      //   }
+      // })
+    </script>
+  </body>
+</html>

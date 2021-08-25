@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .parent {
+        background-color: red;
+        /* height: 200px; */
+        /* overflow: hidden; */
+      }
+      /* 伪元素,可以让parent高度撑开 */
+      /* .parent::after {
+        content: '';
+        display: block;
+        clear: both;
+      } */
+      /* 通用类,可以让parent高度撑开 */
+      .clearfix:after {
+        content: '';
+        display: block;
+        clear: both;
+      }
+      .children1 {
+        float: left;
+        width: 50px;
+        height: 50px;
+        background-color: pink;
+      }
+      .children2 {
+        float: left;
+        width: 50px;
+        height: 50px;
+        background-color: blue;
+      }
+      .qiang {
+        clear: both;
+      }
+      .other {
+        /* clear: both; */
+        width: 100px;
+        height: 100px;
+        background-color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="parent clearfix">
+      <div class="children1"></div>
+      <div class="children2"></div>
+      <!-- 内墙 可以让parent高度撑开 -->
+      <!-- <div class="qiang"></div> -->
+    </div>
+    <!-- 外墙 无法让parent高度撑开-->
+    <!-- <div class="qiang"></div> -->
+    <!-- 无法让parent高度撑开 -->
+    <div class="other"></div>
+  </body>
+</html>

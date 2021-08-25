@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // let p1 = new Promise((resolve, reject) => {
+      //   // resolve('p1-resolve')
+      //   reject('p1-reject')
+      // })
+      // let p2 = p1
+      //   .then
+      //   // result => {
+      //   // return result
+      //   // return Promise.resolve(result)
+      //   // return Promise.reject(result)
+      //   // },
+
+      //   // result会顺延到下一个then中
+      //   // null,
+      //   // reason => {
+      //   //   // return reason
+      //   //   // return Promise.resolve(reason)
+      //   //   return Promise.reject(reason)
+      //   // }
+
+      //   // 均会往后顺延
+      //   ()
+      // let p3 = p2.then(
+      //   result => {
+      //     console.log('resolved', result)
+      //   },
+      //   reason => {
+      //     console.log('rejected', reason)
+      //   }
+      // )
+
+      // promise状态
+      let p1 = new Promise((resolve, reject) => {
+        resolve(10)
+      })
+      console.log(p1)
+      // p2 = p1.then()
+      // console.log(p2)
+    </script>
+  </body>
+</html>

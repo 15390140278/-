@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /**
+       * Definition for singly-linked list.
+       * function ListNode(val) {
+       *     this.val = val;
+       *     this.next = null;
+       * }
+       */
+      /**
+       * @param {ListNode} l1
+       * @param {ListNode} l2
+       * @return {ListNode}
+       */
+      var addTwoNumbers = function (l1, l2) {
+        return add(l1, l2, 0)
+        // const headNode = new ListNode()
+        // let current = headNode
+        // // 进位
+        // let extra = 0
+        // while (l1 || l2) {
+        //   let sum = extra
+        //   if (l1) {
+        //     sum += l1.val
+        //     l1 = l1.next
+        //   }
+        //   if (l2) {
+        //     sum += l2.val
+        //     l2 = l2.next
+        //   }
+        //   extra = Math.floor(sum / 10)
+        //   current.next = new ListNode(sum % 10)
+        //   current = current.next
+        // }
+        // 判断是否还有进位
+        // if (extra) current.next = new ListNode(extra)
+        // return headNode.next
+      }
+      function add(l1, l2, extra) {
+        // 递归结束条件
+        if (l1 == null && l2 == null) {
+          return extra == 0 ? null : new ListNode(extra)
+        }
+        if (l1) {
+          extra += l1.val
+          l1 = l1.next
+        }
+        if (l2) {
+          extra += l2.val
+          l2 = l2.next
+        }
+        return new ListNode(extra % 10, add(l1, l2, Math.floor(extra / 10)))
+      }
+    </script>
+  </body>
+</html>

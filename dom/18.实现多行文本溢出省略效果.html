@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* 单行溢出省略号 */
+      .container {
+        width: 50px;
+        background-color: pink;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      /* 多行溢出隐藏 */
+      p {
+        width: 50px;
+        background-color: skyblue;
+        display: -webkit-box;
+        overflow: hidden;
+        /* 行数 */
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+      }
+      /* 兼容 */
+      /* p {
+        position: relative;
+        line-height: 20px;
+        max-height: 40px;
+        overflow: hidden;
+      }
+      p::after {
+        content: '...';
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        padding-left: 40px;
+        background: -webkit-linear-gradient(left, transparent, #fff 55%);
+        background: -o-linear-gradient(right, transparent, #fff 55%);
+        background: -moz-linear-gradient(right, transparent, #fff 55%);
+        background: linear-gradient(to right, transparent, #fff 55%);
+      } */
+    </style>
+  </head>
+  <body>
+    <div class="container">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
+    <p>
+      <span>bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb</span>
+      <span>bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb</span>
+      <span>bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb</span>
+    </p>
+    <!-- js实现 -->
+    <div id="box"></div>
+
+    <script>
+      let str = 'ccccc'
+      let box = document.getElementById('box')
+      // 可视高度
+      let H = box.offsetHeight
+      for (i = 0; i < str.length; i++) {
+        box.innerHTML = str.substr(0, i)
+        // 元素完整高度scrollHeight
+        if (H < box.scrollHeight) {
+          box.style.overflow = 'hidden'
+          box.innerHTML = str.substr(0, i - 3) + '...'
+          break
+        }
+      }
+    </script>
+  </body>
+</html>

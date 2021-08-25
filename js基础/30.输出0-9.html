@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // for (var i = 0; i < 9; i++) {
+      //   setTimeout(
+      //     i => {
+      //       console.log(i)
+      //     },
+      //     1000,
+      //     i //回调函数的参数
+      //   )
+      // }
+
+      // for (var i = 0; i < 9; i++) {
+      //   setTimeout(console.log, 1000, i)
+      // }
+
+      // for (var i = 0; i < 9; i++) {
+      //   setTimeout(console.log.bind(Object.create(null), i), 1000)
+      // }
+
+      // for (var i = 0; i < 9; i++) {
+      //   try {
+      //     throw new Error(i)
+      //   } catch ({ message: i }) {
+      //     setTimeout(() => {
+      //       console.log(i)
+      //     }, 1000)
+      //   }
+      // }
+
+      // js引擎会自动给setTimeout包裹一层函数
+      // for (var i = 0; i < 10; i++) {
+      //   setTimeout(console.log(i), 1000)
+      // }
+
+      // for (var i = 0; i < 10; i++) {
+      //   setTimeout(
+      //     (() => {
+      //       console.log(i)
+      //     })(),
+      //     1000
+      //   )
+      // }
+
+      for (var i = 0; i < 10; i++) {
+        setTimeout(eval('console.log(i)'), 1000)
+      }
+
+      for (var i = 0; i < 10; i++) {
+        setTimeout(new Function('i', 'console.log(i)')(i), 1000)
+      }
+
+      for (var i = 0; i < 10; i++) {
+        setTimeout(new Function('console.log(i)')(), 1000)
+      }
+    </script>
+  </body>
+</html>

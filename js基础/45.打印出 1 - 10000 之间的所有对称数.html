@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let res = []
+      for (let i = 1; i < 10000; i++) {
+        if (i < 10) {
+          res.push(i)
+          continue
+        }
+        let str = i.toString()
+        for (let j = 0; j < Math.floor(str.length / 2); j++) {
+          if (str[j] == str[str.length - 1 - j]) {
+            continue
+          } else {
+            str = ''
+          }
+        }
+        if (str) {
+          res.push(i)
+        }
+      }
+      console.log(res)
+
+      let arr = [...Array(9999).keys()]
+        .map(item => item + 1)
+        .filter(item => {
+          return item.toString() === item.toString().split('').reverse().join('')
+        })
+      console.log(arr)
+    </script>
+  </body>
+</html>

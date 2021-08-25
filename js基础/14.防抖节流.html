@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #app {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script>
+      // app.addEventListener(
+      //   'click',
+      //   throttle(function () {
+      //     console.log('11')
+      //   }, 500)
+      // )
+      // 防抖
+      // function debounce(fn, wait) {
+      //   let timer = null
+      //   return function () {
+      //     let args = arguments
+      //     let context = this
+      //     if (timer) {
+      //       clearTimeout(timer)
+      //       timer = null
+      //     }
+      //     timer = setTimeout(_ => {
+      //       fn.apply(context, args)
+      //     }, wait)
+      //   }
+      // }
+
+      // // 节流
+      // function throttle(fn, delay) {
+      //   let preTime = Date.now()
+      //   return function () {
+      //     let context = this
+      //     let args = arguments
+      //     let nowTime = Date.now()
+      //     if (nowTime - preTime > delay) {
+      //       preTime = Date.now()
+      //       fn.apply(context, args)
+      //     }
+      //   }
+      // }
+
+      // function debounce(fn, delay) {
+      //   let timer = null
+      //   return function () {
+      //     let context = this
+      //     if (timer) {
+      //       clearTimeout(timer)
+      //       timer = null
+      //     }
+      //     timer = setTimeout(() => {
+      //       fn.apply(context, arguments)
+      //     }, delay)
+      //   }
+      // }
+
+      // app.addEventListener(
+      //   'click',
+      //   debounce(function () {
+      //     alert('ok')
+      //   }, 500)
+      // )
+
+      // function throttle(fn) {
+      //   let date = Date.now()
+      //   return function () {
+      //     let context = this
+      //     if (Date.now() - date > 500) {
+      //       date = Date.now()
+      //       fn.apply(context, arguments)
+      //     }
+      //   }
+      // }
+
+      function throttle(fn) {
+        let canRun = true
+        return function () {
+          let context = this
+          if (!canRun) {
+            return
+          }
+          canRun = false
+          setTimeout(() => {
+            fn.apply(context, arguments)
+            canRun = true
+          }, 500)
+        }
+      }
+
+      app.addEventListener(
+        'click',
+        throttle(function () {
+          console.log('ok')
+        })
+      )
+    </script>
+  </body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 初步实现
+      // let currying = function (fn) {
+      //   let args = [...arguments].slice(1)
+      //   return function () {
+      //     let _args = args.concat([...arguments])
+      //     fn.apply(this, _args)
+      //   }
+      // }
+
+      // function add() {
+      //   let _args = [...arguments]
+
+      //   let _adder = function () {
+      //     _args.push(...arguments)
+      //     return _adder
+      //   }
+      //   _adder.toString = function () {
+      //     return _args.reduce((a, c) => a + c)
+      //   }
+
+      //   return _adder
+      // }
+
+      // console.log(add(1)(2)(3)(4, 5, 5) + '')
+
+      // 函数柯里化指的是一种将使用多个参数的一个函数转换成一系列使用一个参数的函数的技术。
+      // function curry(fn, args) {
+      //   let len = fn.length
+      //   args = args || []
+      //   return function () {
+      //     let newArgs = args.concat(...arguments)
+      //     if (newArgs.length < len) {
+      //       return curry.call(this, fn, newArgs)
+      //     } else {
+      //       return fn.apply(this, newArgs)
+      //     }
+      //   }
+      // }
+
+      // es6 实现
+      function curry(fn, ...args) {
+        // 这里是bind 因为每次收集参数都是通过curry()收集
+        // es5中是通过返回一个匿名函数收集
+        return fn.length <= args.length ? fn(...args) : curry.bind(null, fn, ...args)
+      }
+      let add = (a, b, c) => {
+        console.log(a + b + c)
+      }
+      let _add = curry(add)
+      _add(1)(2, 3)
+    </script>
+  </body>
+</html>

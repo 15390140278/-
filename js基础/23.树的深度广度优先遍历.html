@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let tree = {
+        value: 'a',
+        children: [
+          {
+            value: 'b',
+            children: [
+              {
+                value: 'd'
+              }
+            ]
+          },
+          {
+            value: 'c',
+            children: [
+              {
+                value: 'e'
+              }
+            ]
+          }
+        ]
+      }
+      // 深度优先
+      deepTraversal1 = (node, nodeList = []) => {
+        if (node !== null) {
+          nodeList.push(node.value)
+          if (node.hasOwnProperty('children') && node.children.length > 0) {
+            let childNodes = node.children
+            childNodes.forEach(childNode => deepTraversal1(childNode, nodeList))
+          }
+        }
+        return nodeList
+      }
+
+      deepTraversal2 = node => {
+        let nodeList = []
+        if (node !== null) {
+          nodeList.push(node.value)
+        }
+        if (node.hasOwnProperty('children') && node.children.length > 0) {
+          let childNodes = node.children
+          childNodes.forEach(childNode => (nodeList = nodeList.concat(deepTraversal1(childNode))))
+        }
+
+        return nodeList
+      }
+
+      // 非递归
+      deepTraversal3 = node => {
+        let stack = []
+        let nodeList = []
+        if (node !== null) {
+          stack.push(node)
+          while (stack.length > 0) {
+            let item = stack.pop()
+            nodeList.push(item.value)
+            if (item.children && item.children.length > 0) {
+              for (let i = 0; i < item.children.length; i++) {
+                stack.push(item.children[i])
+              }
+            }
+          }
+        }
+        return nodeList
+      }
+
+      // 广度优先
+      let widthTraversal = node => {
+        let queue = []
+        let nodeList = []
+        if (node !== null) {
+          queue.push(node)
+        }
+        while (queue.length > 0) {
+          let item = queue.shift()
+          nodeList.push(item.value)
+          if (item.children && item.children.length > 0) {
+            for (let i = 0; i < item.children.length; i++) {
+              queue.push(item.children[i])
+            }
+          }
+        }
+        return nodeList
+      }
+
+      console.log(deepTraversal1(tree))
+      console.log(deepTraversal2(tree))
+      console.log(deepTraversal3(tree))
+      console.log(widthTraversal(tree))
+    </script>
+  </body>
+</html>

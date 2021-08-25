@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .container {
+        padding: 0 200px 0 200px;
+      }
+      .middle,
+      .left,
+      .right {
+        position: relative;
+        float: left;
+        min-height: 200px;
+      }
+      .middle {
+        width: 100%;
+        background-color: red;
+      }
+      .left {
+        /* 向左走middle的宽度到达left:0的位置,然后再向左走自己的宽度 left: -200px */
+        margin-left: -100%;
+        left: -200px;
+        width: 200px;
+        background-color: blue;
+      }
+      .right {
+        /* 左边的走了过后,右边的就挨着middle了,向左走自己宽度的位置到达right:0的位置,然后再向右走自己的宽度 right: -200px */
+        margin-left: -200px;
+        right: -200px;
+        width: 200px;
+        background-color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="middle"></div>
+      <div class="left"></div>
+      <div class="right"></div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // Array
+      // var arr = ['a', 'b', 'c', 'd', 'e']
+      // var eArr = arr[Symbol.iterator]()
+      // console.log(eArr.next().value) // a
+      // console.log(eArr.next().value) // b
+      // console.log(eArr.next().value) // c
+      // console.log(eArr.next().value) // d
+      // console.log(eArr.next().value) // e
+      // console.log(eArr.next().value) // undefined
+      // console.log(eArr)
+      // for (k of eArr) {
+      //   console.log(k)
+      // }
+      // console.log(new Set(eArr))
+      // map
+      // const map = new Map()
+      // map.set('0', 'foo')
+      // map.set('1', 'bar')
+      // const iterator = map[Symbol.iterator]()
+      // console.log(iterator)
+      // console.log(iterator.next())
+
+      let obj = {
+        data: ['hello', 'world'],
+        [Symbol.iterator]() {
+          const self = this
+          let index = 0
+          return {
+            next() {
+              if (index < self.data.length) {
+                return {
+                  value: self.data[index++],
+                  done: false
+                }
+              } else {
+                return {
+                  value: undefined,
+                  done: true
+                }
+              }
+            }
+          }
+        }
+      }
+
+      //使用for of 遍历
+
+      // Array
+      let array = ['red', 'green', 'blue']
+      array[Symbol.iterator]() //Iterator遍历器
+      array[Symbol.iterator]().next() //{value: "red", done: false}
+
+      // String
+      let string = '1122334455'
+      string[Symbol.iterator]() //Iterator遍历器
+      string[Symbol.iterator]().next() //{value: "1", done: false}
+
+      // set
+      let set = new Set(['red', 'green', 'blue'])
+      set[Symbol.iterator]() //Iterator遍历器
+      set[Symbol.iterator]().next() //{value: "red", done: false}
+
+      // Map
+      let map = new Map()
+      let obj = { map: 'map' }
+      map.set(obj, 'mapValue')
+      map[Symbol.iterator]().next() // {value: Array(2), done: false}
+    </script>
+  </body>
+</html>

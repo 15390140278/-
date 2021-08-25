@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .a {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <div class="a" draggable="true"></div> -->
+    <div class="a" draggable="true"></div>
+    <script>
+      const a = document.querySelector('.a')
+      let x, y
+      const mouseMove = function (e) {
+        console.log('move')
+        let moveX = e.clientX - x
+        let moveY = e.clientY - y
+        a.style.left = moveX + 'px'
+        a.style.top = moveY + 'px'
+      }
+
+      const mouseDown = function (e) {
+        console.log('down')
+        a.addEventListener('mousemove', mouseMove)
+        // 获取鼠标相对于元素的位置 = 鼠标相对于窗口的位置 - 元素相对于窗口的位置
+        x = e.clientX - a.offsetLeft
+        y = e.clientY - a.offsetTop
+      }
+
+      const mouseUp = function () {
+        console.log('up')
+        a.removeEventListener('mousemove', mouseMove)
+        a.removeEventListener('mouseup', mouseUp)
+      }
+
+      a.addEventListener('mousedown', mouseDown)
+
+      a.addEventListener('mouseup', mouseUp)
+    </script>
+  </body>
+</html>

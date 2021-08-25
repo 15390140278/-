@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>首页</title>
+    <script type="application/javascript" src="../js/jquery-3.4.1.min.js"></script>
+    <style type="text/css">
+      * {
+        margin: 0 0;
+        padding: 0 0;
+      }
+    </style>
+
+    <script type="application/javascript">
+      //改变背景图片
+      function chgImg() {
+        $('#indexImg').css('background-image', "url('../img/1_2.jpg')")
+      }
+      //切回背景图片
+      function normalImg() {
+        $('#indexImg').css('background-image', "url('../img/1_1.jpg')")
+      }
+      //浏览器打开指定url
+      function openurl() {
+        window.open('./agencyIndex.html')
+      }
+    </script>
+  </head>
+
+  <body style="overflow-x: hidden">
+    <img
+      style="
+        width: 1920px;
+        height: 1420px;
+        position: absolute;
+        left: 50%;
+        top: 0%;
+        margin-left: -960px;
+        margin-top: 0px;
+        background-image: url('./resource/panda.jpg');
+        background-repeat: no-repeat;
+        background-position: center;
+      "
+      usemap="#planetmap"
+      id="indexImg"
+    />
+
+    <map name="planetmap" id="planetmap">
+      <area shape="rect" coords="1050,131,1130,154" onmousemove="chgImg()" alt="机构1" />
+      <area shape="rect" coords="1020,120,1220,415" onclick="openurl()" onmouseout="normalImg()" alt="机构2" />
+      <area shape="rect" coords="770,675,1184,968" href="newsdetail.html" alt="详情" />
+    </map>
+  </body>
+</html>

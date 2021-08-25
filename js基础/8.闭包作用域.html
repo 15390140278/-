@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // let x = 0
+      // function fn(x) {
+      //   x = 1
+      //   console.log(x)
+      // }
+      // fn(x)
+      // console.log(x)
+
+      // let x = 0
+      // function fn() {
+      //   x = 1
+      //   console.log(x)
+      // }
+      // fn()
+      // console.log(x)
+
+      // let x = 0
+      // function fn() {
+      //   console.log(x)
+      //   // let x 报错
+      //   // 变量提升
+      //   var x //undfined
+      // }
+      // fn()
+      // console.log(x)
+
+      // 闭包
+      // var arr = [1, 2, 3, 4]
+      // for (var i = 0; i < arr.length; i++) {
+      //   ~(function (i) {
+      //     setTimeout(_ => {
+      //       console.log(i)
+      //     }, 0)
+      //   })(i)
+      // }
+
+      function fn1() {
+        let a = 0
+        return function () {
+          return a
+        }
+      }
+
+      let fn2 = fn1()
+      fn2()
+      console.log('end')
+    </script>
+  </body>
+</html>
