@@ -7,15 +7,15 @@
 // 返回生成数组 nums 中的 最大 值。
 
 function getMaximumGenerated(n) {
-  let nums = Array(n + 1)
-  nums[0] = 0
-  nums[1] = 1
-  let max = 0
+  let nums = Array(n + 1);
+  nums[0] = 0;
+  nums[1] = 1;
+  let max = 0;
   for (let i = 2; i <= n; i++) {
-    nums[i] = i % 2 ? nums[(i - 1) / 2] + nums[(i - 1) / 2 + 1] : nums[i / 2]
-    max = Math.max(nums[i], max)
+    nums[i] = i % 2 ? nums[(i - 1) / 2] + nums[(i - 1) / 2 + 1] : nums[i / 2];
+    max = Math.max(nums[i], max);
   }
-  console.log(max)
+  console.log(max);
 }
 
-getMaximumGenerated(7)
+getMaximumGenerated(7);
